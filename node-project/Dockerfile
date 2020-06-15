@@ -5,14 +5,15 @@ FROM node:alpine
 WORKDIR /usr/app
 
 # Copy only the package.json file to minimize the rebuilds and cache busting
-COPY ./package.json ./
+COPY ./package.json .
 
 # Install dependencies mentioned in package.json file using npm
 RUN npm install
 
 # Copy current directory files to the working directory of the docker
-COPY ./ ./
+COPY . .
 
 # Configure the start up command
 CMD ["npm", "start"]
+
 
