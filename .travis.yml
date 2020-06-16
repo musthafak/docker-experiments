@@ -1,0 +1,10 @@
+language: generic
+sudo: required
+services:
+    - docker
+
+before_build:
+    - docker build -t musthafakdml/frontend -f frontend/Dockerfile.dev frontend
+
+scripts:
+    - docker run -e CI=true musthafakdml/frontend npm run test -- --coverage
