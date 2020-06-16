@@ -84,6 +84,14 @@
 	- WORKDIR <path inside the container> 
 	- If the path is not existing the docker will create it for us. All the commands will be running inside the container relative to it.
 
+16. Volume mapping
+	- docker run -it -p 3000:3000 -v /app/node_modules -v $(pwd):/app musthafakdml/frontend
+	- volume bookmarkings: -v /app/node_modules :- Is just telling not to overwrite the contents in this folder while copy
+	- More info: https://docs.docker.com/docker-for-windows/wsl/#best-practices
+
+17. Multi-Step build process
+	- Use a container to build an application and another to deploy the builded application
+	- Sample file: ./frontend/Dockerfile
 
 
 Docker compose

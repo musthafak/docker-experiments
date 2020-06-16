@@ -1,9 +1,18 @@
+# Set the version of the docker compose file
 version: "3"
+
+# Configure the containers
 services:
+	# Container name
     redis-server: 
+		# Source image to start the containers
         image: redis
+	
     node-app:
+		# Restart policy(set to restart the containers always)
         restart: always
+		# Build the container using Docker file in the current directory
         build: .
+		# Mention port mapping as a list
         ports:
             - "4001:8080"
