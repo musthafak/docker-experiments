@@ -16,14 +16,17 @@ script:
 
 # AWS configuration to deploy the application
 deploy:
-    - provider: elasticbeanstalk
-    - region: ap-south-1
-    - app: frontend-experiment
-    - env: FrontendExperiment-env
-    - bucket_name: elasticbeanstalk-ap-south-1-832447328278 # S3 bucket name
-    - bucket_path: frontend-experiment # S3 path where the application will be copied
+    provider: elasticbeanstalk
+    region: ap-south-1
+    app: frontend-experiment
+    env: FrontendExperiment-env
+    # S3 bucket name
+    bucket_name: elasticbeanstalk-ap-south-1-832447328278 
+    # S3 path where the application will be copied
+    bucket_path: frontend-experiment 
+    # Diploy the application only when the master branch is updated
     on: 
-        - branch: master # Diploy the application only when the master branch is updated
-    access_key_id: $AWS_ACCESS_KEY # This variable has been saved in travis-ci environemnt variables
+        - branch: master
+     # This variable has been saved in travis-ci environemnt variables
+    access_key_id: $AWS_ACCESS_KEY
     access_secret_key: $AWS_SECRET_KEY
-    
