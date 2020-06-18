@@ -28,5 +28,5 @@ deploy:
     on: 
         - branch: master
      # This variable has been saved in travis-ci environemnt variables
-    access_key_id: $AWS_ACCESS_KEY
-    access_secret_key: $AWS_SECRET_KEY
+    access-key-id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
