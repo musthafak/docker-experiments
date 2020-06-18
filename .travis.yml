@@ -1,10 +1,29 @@
 language: generic
+# To run tests as super user
 sudo: required
+
+# The services needed to run the tests
 services:
     - docker
 
+# Things to be done before running the tests
 before_install:
     - docker build -t musthafakdml/frontend -f frontend/Dockerfile.dev frontend
 
+# The step to run the tests on Travis CI machine
 script:
     - docker run -e CI=true musthafakdml/frontend npm run test -- --coverage
+
+# AWS configuration to deploy the application
+deploy:
+    - provider: elasticbeanstalk
+    - region: ap-south-1
+    - app: frontend-experiment
+    - env: FrontendExperiment-env
+    - bucket_name: elasticbeanstalk-ap-south-1-832447328278 # S3 bucket name
+    - bucket_path: frontend-experiment # S3 path where the application will be copied
+    on: 
+        - branch: master # Diploy the application only when the master branch is updated
+    access_key_id: $AWS_ACCESS_KEY # This variable has been saved in travis-ci environemnt variables
+    access_secret_key: $AWS_SECRET_KEY
+    
